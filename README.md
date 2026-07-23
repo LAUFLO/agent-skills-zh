@@ -4,6 +4,10 @@
 
 ## 包含的 Skill
 
+### safe-project-delivery
+
+为任意 Git 项目建立分级授权的修改、测试、提交、PR、合并与发布流程，避免普通代码修改被自动扩大为直接推送主分支或发布版本。
+
 ### pixel-winforms-ui
 
 为 Windows WinForms 应用建立纯白背景、粗像素边框、统一控件、DPI、多屏和无闪烁刷新规范，并提供可复制的 C# 主题模板。
