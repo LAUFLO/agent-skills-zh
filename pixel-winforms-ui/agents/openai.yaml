@@ -1,0 +1,4 @@
+interface:
+  display_name: "像素风 Windows 应用 UI"
+  short_description: "创建纯白重像素风格的 WinForms 桌面应用界面"
+  default_prompt: "使用 $pixel-winforms-ui 为这个 Windows 应用设计并实现统一的白底重像素界面。"

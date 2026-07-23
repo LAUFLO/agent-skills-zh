@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "需求生成测试用例"
+  short_description: "从需求文档生成标准功能测试用例"
+  default_prompt: "Use $auto-gen-testcase-from-req 根据这个需求文档生成标准功能测试用例。"
