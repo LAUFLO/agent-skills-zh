@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目质量守卫"
+  short_description: "初始化并审计项目结构、编码规范、测试策略与自动化质量门禁"
+  default_prompt: "Use $guard-project-quality to initialize or audit this project for maintainable structure and enforceable code-quality rules."

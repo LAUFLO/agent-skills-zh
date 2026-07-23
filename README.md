@@ -4,6 +4,10 @@
 
 ## 包含的 Skill
 
+### guard-project-quality
+
+为新项目初始化可维护的目录、编码规范、测试与 CI，并审计现有项目的结构、根目录源码和大文件；提交、PR 与发布继续交由 `safe-project-delivery`。
+
 ### safe-project-delivery
 
 为任意 Git 项目建立分级授权的修改、测试、提交、PR、合并与发布流程，避免普通代码修改被自动扩大为直接推送主分支或发布版本。
