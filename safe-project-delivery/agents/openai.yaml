@@ -1,4 +1,0 @@
-interface:
-  display_name: "安全项目交付工作流"
-  short_description: "安全完成各类项目的修改、测试、PR、合并和版本发布流程"
-  default_prompt: "使用 $safe-project-delivery 在当前项目中安全完成修改，并按授权边界推进到 PR、合并或发布。"
