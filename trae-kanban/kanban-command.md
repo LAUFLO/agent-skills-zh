@@ -1,8 +1,38 @@
-# /看板 — TRAE 项目看板命令
+# /看板 — TRAE 项目看板（Command + Skill 双版本）
 
 > 借鉴 LoopX 控制面理念，一条命令让 TRAE 项目在分阶段开发中实现「关闭会话不丢状态，新开会话一秒接续」。
 
-## 使用方法
+## 两种使用方式
+
+| 方式 | 触发 | 适用场景 |
+|------|------|---------|
+| **Command** | 用户输入 `/看板` | 手动触发，阶段结束时使用 |
+| **Skill** | AI 自动调用或用户说"执行看板" | 配合自动看板规则，AI 可主动触发 |
+
+> 两种方式功能完全一致，推荐两者都配置：Skill 用于自动触发，Command 作为手动备选。
+
+## Skill 版（推荐）
+
+将 `SKILL.md` 放到项目 `.trae/skills/kanban/` 目录下即可。
+
+文件路径：`.trae/skills/kanban/SKILL.md`
+
+```markdown
+---
+name: "kanban"
+description: "更新项目控制面：结构化状态(state.json)、任务看板与启动入口(boot-packet.md)，让新会话一秒接续。当用户说'好了''完成了''先这样''下一个阶段''收工'等结束信号时，或当前frontier所有todo已完成时，或用户明确要求执行看板/总结项目时，主动调用此Skill。"
+---
+
+# /看板 — 项目看板 Skill
+
+更新项目控制面，供下次开发接续。
+
+（执行步骤与 Command 版完全一致，见下方）
+```
+
+> 完整 Skill 文件见本仓库 [SKILL.md](./SKILL.md)
+
+## Command 版
 
 在 TRAE 中创建自定义命令，名称为 `看板`，内容如下：
 
@@ -95,7 +125,10 @@
 │   ├── state.json             ← 真相源（结构化，增量更新）
 │   ├── boot-packet.md         ← 薄启动入口（< 500 字）
 │   ├── project_summary.md     ← 人类可读看板
-│   └── evidence/              ← 截图、日志等证据文件
+│   ├── evidence/              ← 截图、日志等证据文件
+│   └── skills/
+│       └── kanban/
+│           └── SKILL.md       ← 看板 Skill 版本
 ```
 
 ## 灵感来源
