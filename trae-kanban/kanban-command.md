@@ -50,6 +50,13 @@ description: "更新项目控制面：结构化状态(state.json)、任务看板
 
 ## 执行步骤
 
+### 0. 确定项目根目录（必须首先执行）
+- 执行 `git rev-parse --git-common-dir` 获取 git 公共目录路径
+- 若结果为 `.git`（相对路径）→ 当前处于主仓库，执行 `git rev-parse --show-toplevel` 获取项目根目录
+- 若结果为绝对路径（如 `C:/Users/.../StartUpilot/.git`）→ 当前处于 worktree，取其父目录作为项目根目录
+- 若命令失败（非 git 仓库）→ 回退使用当前终端 cwd
+- 将最终路径记为 `PROJECT_ROOT`，后续所有文件读写操作均基于此路径，不得直接使用终端 cwd
+
 ### 1. 读取当前状态
 - 读取 `.trae/state.json`（如果存在）
 - 读取项目根目录 `project_memory.md`（如果存在）
@@ -94,7 +101,7 @@ description: "更新项目控制面：结构化状态(state.json)、任务看板
 - 后续注意事项
 
 ### 6. 更新 project_memory.md
-位于项目根目录 `project_memory.md`，同时尝试复制到 TRAE 记忆目录下的对应子目录（路径：`c:\Users\Administrator\.trae-cn\memory\projects\` 下与当前工作目录对应的子目录）：
+位于项目根目录 `project_memory.md`，同时尝试复制到 TRAE 记忆目录下的对应子目录（路径：`c:\\Users\\Administrator\\.trae-cn\\memory\\projects\\` 下与当前工作目录对应的子目录）：
 - 第一行必须是：`> **新会话启动时，请首先读取 .trae/boot-packet.md 获取当前任务状态。**`
 - 必须包含自动看板规则（见下方）
 - 后续内容：项目约定、开发流程、稳定不常变的信息
