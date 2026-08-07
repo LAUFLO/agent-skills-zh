@@ -15,6 +15,13 @@ description: "更新项目控制面：结构化状态(state.json)、任务看板
 
 ## 执行步骤
 
+### 0. 确定项目根目录（必须首先执行）
+- 执行 `git rev-parse --git-common-dir` 获取 git 公共目录路径
+- 若结果为 `.git`（相对路径）→ 当前处于主仓库，执行 `git rev-parse --show-toplevel` 获取项目根目录
+- 若结果为绝对路径（如 `C:/Users/.../StartUpilot/.git`）→ 当前处于 worktree，取其父目录作为项目根目录
+- 若命令失败（非 git 仓库）→ 回退使用当前终端 cwd
+- 将最终路径记为 `PROJECT_ROOT`，后续所有文件读写操作均基于此路径，不得直接使用终端 cwd
+
 ### 1. 读取当前状态
 - 读取 `.trae/state.json`（如果存在）
 - 读取项目根目录 `project_memory.md`（如果存在）
