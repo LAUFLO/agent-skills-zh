@@ -59,6 +59,7 @@ description: "更新项目控制面：结构化状态(state.json)、任务看板
   - ✅ 确认完成：列出将要标记为 terminal 的 todo 及 evidence
   - 🚧 确认阻塞：列出新发现的 gate
   - 🔄 确认决策：列出新增的 lessons
+  - 📋 剩余待办：列出当前 phase frontier 中未被标记为 terminal 的 todo（若 frontier 为空则显示"无，当前阶段所有任务已完成"）
 - 等待用户确认后，再继续步骤3
 
 ### 3. 更新 state.json（幂等）
