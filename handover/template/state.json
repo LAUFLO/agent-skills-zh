@@ -6,7 +6,7 @@
     {
       "id": "phase-1",
       "name": "P0 看板最小改动闭环",
-      "goal": "落地 memorax 启发的 3 项最小改动：lessons 分类、frontier 语义去重、version 原子写",
+      "goal": "落地 memorax 启发的 3 项最小改动：lessons 分类、frontier 语义去重、原子化写入",
       "status": "active",
       "roadmap_file": "docs/ROADMAP.md",
       "staging_dir": "docs/staging",
@@ -17,7 +17,7 @@
           "id": "lesson-1",
           "type": "self_repair",
           "category": "engineering",
-          "content": "state.json 增加 version 字段，写入前做版本校验，fail-closed 防并发覆盖",
+          "content": "state.json 写入前做版本校验，fail-closed 防并发覆盖",
           "createdAt": "2026-09-02"
         }
       ],

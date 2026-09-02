@@ -6,7 +6,7 @@
 - 真相源 `.opencode/handover/state.json`，其他视图不可反向修改
 - `lessons` 分类 `engineering|procedure|preference|repo`，缺省 `engineering`（兼容旧数据）
 - `frontier` 写入前经 `normalizeContent -> contentHash` 语义去重，相同内容更新原 todo 而非追加
-- `state.json` 写入前校验 `version`，冲突则 fail-closed 提示重跑 `/handover`（兼容 `/kanban`）
+- `state.json` 写入前校验 `version`，冲突则 fail-closed 提示重跑 `/handover`
 - `boot-packet` 按 frontier 关键词过滤 lessons（`filterLessonsForBoot`），而非固定最近3条
 - `docs/tech-spec.md` 新增约定自动同步至此文件
 
@@ -16,7 +16,7 @@
 - 优先小步验证，跨包改动先跑最近测试
 
 ## 自动看板规则
-- 当用户说"好了""完成了""先这样""下一个阶段""收工"等结束信号时，主动询问是否需要执行 /handover（兼容 /kanban）
+- 当用户说"好了""完成了""先这样""下一个阶段""收工"等结束信号时，主动询问是否需要执行 /handover
 - 当检测到当前 frontier 所有 todo 均为 terminal 时，自动提醒执行 /handover
 - 当检测到 `docs/staging/plans/*.md` 存在且本次会话有推进、但尚未执行 /handover 时，提醒执行 /handover（防止 ship 删除 staging 后进度丢失）
 - 每次对话结束前，检查是否有未记录进展，如有则提醒执行 /handover
