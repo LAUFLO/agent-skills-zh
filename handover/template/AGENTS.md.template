@@ -3,7 +3,7 @@
 # AGENTS — LAUFLO
 
 ## 项目约定
-- 真相源 `.opencode/handover/state.json` (v1，含 `version` / `lessons[].category`)，其他视图不可反向修改
+- 真相源 `.opencode/handover/state.json`，其他视图不可反向修改
 - `lessons` 分类 `engineering|procedure|preference|repo`，缺省 `engineering`（兼容旧数据）
 - `frontier` 写入前经 `normalizeContent -> contentHash` 语义去重，相同内容更新原 todo 而非追加
 - `state.json` 写入前校验 `version`，冲突则 fail-closed 提示重跑 `/handover`（兼容 `/kanban`）

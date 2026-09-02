@@ -18,7 +18,7 @@
 
 会话接续与项目控制面 Skill（原 trae-kanban 重构），让新会话一秒接续。适用于 /handover、会话交接、状态同步、看板更新、收工等场景。
 
-- 单一路径 .opencode/handover/，单一真相源 state.json(v1)，含 ersion 与 lessons[].category\n- 语义去重 contentHash、版本原子写、按 rontier 关键词过滤 lessons\n- Praxis 可选集成（有则用，无则跳过），ship 前自动提醒吸收
+- 单一路径 .opencode/handover/，单一真相源 state.json\n- 语义去重 contentHash、版本原子写、按 rontier 关键词过滤 lessons\n- Praxis 可选集成（有则用，无则跳过），ship 前自动提醒吸收
 
 核心机制：Frontier（待办）+ Gate（阻塞）+ Evidence（证据），配合进展信号规范，支持跨 worktree 与多项目复用。
 

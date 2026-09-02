@@ -15,7 +15,7 @@ description: 会话接续与项目控制面 skill，让新会话一秒接续。�
 
 ## 数据位置
 - **唯一路径**：`.opencode/handover/`（单一真相源，不再分叉）
-- 核心文件：`state.json(v1)` / `boot-packet.md` / `project_summary.md` / `evidence/` / `lib.mjs`
+- 核心文件：`state.json` / `boot-packet.md` / `project_summary.md` / `evidence/` / `lib.mjs`
 
 ## 执行步骤（幂等）
 
@@ -23,7 +23,7 @@ description: 会话接续与项目控制面 skill，让新会话一秒接续。�
 `git rev-parse --git-common-dir` → `.git` 则 `git rev-parse --show-toplevel`，worktree 取父目录，失败回退 `cwd`。
 
 ### 1. 读取当前状态
-读取 `state.json`（校验 `version`，缺省 v1）、`AGENTS.md`，经 `lib.mjs:normalizeLesson` 兼容旧 `lessons`（无 `category` 视为 `engineering`）。
+读取 `state.json`（校验 `version`）、`AGENTS.md`，经 `lib.mjs:normalizeLesson` 兼容旧 `lessons`（无 `category` 视为 `engineering`）。
 
 ### 1.5 读取可选输入源（Praxis 为可选 provider）
 `provider=auto` 默认：检测 `docs/staging/plans/*.md` 或 `docs/tech-spec.md` 是否存在，存在则读，不存在跳过（`lib.mjs:shouldReadPraxis`），不报错。显式 `provider=praxis|none` 可强制。

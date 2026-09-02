@@ -21,7 +21,10 @@
           "createdAt": "2026-09-02"
         }
       ],
-      "spend": { "toolCalls": 0, "filesChanged": 0 }
+      "spend": {
+        "toolCalls": 0,
+        "filesChanged": 0
+      }
     }
   ]
 }
