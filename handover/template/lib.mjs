@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Kanban helpers - P0 最小改动实现
  * 1) lessons category  2) frontier 语义去重  3) version 原子写
  */
@@ -43,7 +43,7 @@ export function ensureVersion(state) {
 }
 export function checkVersionConflict(prevVersion, currentOnDisk) {
   if (currentOnDisk.version !== prevVersion) {
-    throw new Error(`state.json 版本冲突: 内存 v${prevVersion} vs 磁盘 v${currentOnDisk.version}，请重跑 /kanban 合并`);
+    throw new Error(`state.json 版本冲突: 内存 v${prevVersion} vs 磁盘 v${currentOnDisk.version}，请重跑 /handover 合并`);
   }
 }
 export function bumpVersion(state) {
@@ -53,15 +53,15 @@ export function bumpVersion(state) {
 }
 
 // --- 4. provider 解耦（万能插座）---
-/** 解析输入源：praxis 仅为可选 provider，无则跳过不报错 */
+/** 解析输入源：声明的输入源仅为可选输入，无声明则跳过不报错 */
 export function resolveProvider(explicit) {
   if (explicit && explicit !== "auto") return explicit;
-  return "auto"; // auto = 有 praxis 就读，无就跳过
+  return "auto"; // auto = 有声明的输入源文件就读，无则跳过
 }
-export function shouldReadPraxis(provider, hasPraxisFiles) {
+export function shouldReadInputSource(provider, hasInputFiles) {
   if (provider === "none") return false;
-  if (provider === "praxis") return true;
-  return hasPraxisFiles; // auto 模式：有文件才读
+  if (provider && provider !== "auto") return true;
+  return hasInputFiles; // auto 模式：有文件才读
 }
 
 // --- boot-packet 上下文过滤（P0-增强）---

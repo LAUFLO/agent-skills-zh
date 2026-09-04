@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 1,
   "project": "LAUFLO",
   "updatedAt": "2026-09-02T00:00:00.000Z",
@@ -9,7 +9,6 @@
       "goal": "落地 memorax 启发的 3 项最小改动：lessons 分类、frontier 语义去重、原子化写入",
       "status": "active",
       "roadmap_file": "docs/ROADMAP.md",
-      "staging_dir": "docs/staging",
       "frontier": [],
       "gates": [],
       "lessons": [

@@ -8,28 +8,37 @@
 - `frontier` 写入前经 `normalizeContent -> contentHash` 语义去重，相同内容更新原 todo 而非追加
 - `state.json` 写入前校验 `version`，冲突则 fail-closed 提示重跑 `/handover`
 - `boot-packet` 按 frontier 关键词过滤 lessons（`filterLessonsForBoot`），而非固定最近3条
-- `docs/tech-spec.md` 新增约定自动同步至此文件
+- 路径约定声明的输入源（Spec 工件/工单/领域文档）按需读取，声明缺失则跳过
 
 ## 开发流程
-- 每完成子任务输出：动作词 + 文件路径 + 验证方式，并将 `tdd N tests / ship 门禁` 存 `evidence/{todo-id}_test-pass.txt`
+- 每完成子任务输出：动作词 + 文件路径 + 验证方式，并将 `tdd N tests / 发布门禁` 存 `evidence/{todo-id}_test-pass.txt`
 - 阻塞时输出：阻塞内容/原因/解除方式；决策变更时输出：原方案->新方案+原因
 - 优先小步验证，跨包改动先跑最近测试
 
 ## 自动看板规则
 - 当用户说"好了""完成了""先这样""下一个阶段""收工"等结束信号时，主动询问是否需要执行 /handover
 - 当检测到当前 frontier 所有 todo 均为 terminal 时，自动提醒执行 /handover
-- 当检测到 `docs/staging/plans/*.md` 存在且本次会话有推进、但尚未执行 /handover 时，提醒执行 /handover（防止 ship 删除 staging 后进度丢失）
+- 当检测到路径约定声明的输入源有更新且本次会话有推进、但尚未执行 /handover 时，提醒执行 /handover
 - 每次对话结束前，检查是否有未记录进展，如有则提醒执行 /handover
 
-## 可选集成：Praxis（有则用，无则跳过，不报错）
-- 本看板为万能插座，Praxis 仅为可选 provider。未安装 Praxis 时本节整段忽略，`state.json` 即为唯一真相源
-- 单一事实源：`.opencode/handover/state.json` 是真相源。Praxis 工件仅为可选输入源，不可反向修改 Praxis 工件
-- 任务追踪边界：启用 Praxis 时，`docs/staging/plans/*.md` 管单次会话原子任务；`/handover` 管跨会话阶段与里程碑。staging plan 的 `- [ ]` 一旦被吸入 frontier，后续以 frontier 为准
-- ship 前吸收：启用 Praxis 且执行 `ship` 会删除 staging spec/plan，执行前必须先通过 `/handover` 完成一次吸收
-- 决策同步：启用 Praxis 时，`docs/decisions/` 归档决策与 `state.json` 的 lessons 去重映射
+## 输入源（动态发现，不硬编码）
+- 本看板为万能插座，声明的输入源仅为可选输入。无声明输入源时本节整段忽略，`state.json` 即为唯一真相源
+- 单一事实源：`.opencode/handover/state.json` 是真相源。声明的输入源仅为可选输入，不可反向修改输入源文件
+- 任务追踪边界：有声明时，`.scratch/<feature>/issues/` 管单次会话原子任务；`/handover` 管跨会话阶段与里程碑。工单一旦被吸入 frontier，后续以 frontier 为准
+- 归档前吸收：归档输入源会删除 spec/工单文件，执行前必须先通过 `/handover` 完成一次吸收
+- 决策同步：有声明时，输入源归档决策与 `state.json` 的 lessons 去重映射
 
 ## 进展信号规范
 - 完成信号：动作词 + 文件路径 + 验证方式，证据落 `evidence/{todo-id}_{描述}.{ext}`
 - 阻塞信号：阻塞内容 + 原因 + 解除方式
 - 决策变更：原方案->新方案+原因
 - 部分完成：已完成部分+文件路径，剩余部分+下一步动作
+
+## 状态与工件路径约定
+- 结构化状态：`.opencode/handover/state.json`
+- 接续快照：`.opencode/handover/boot-packet.md`
+- 人类看板：`.opencode/handover/project_summary.md`
+- 证据目录：`.opencode/handover/evidence/`
+- Spec 工件：`.scratch/<feature>/spec.md`（由 `to-spec` 产出）
+- 工单目录：`.scratch/<feature>/issues/`（由 `to-tickets` 产出）
+- 领域文档：`CONTEXT.md` + `docs/adr/`

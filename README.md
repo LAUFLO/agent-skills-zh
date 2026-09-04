@@ -1,4 +1,4 @@
-# 中文 Agent Skills
+﻿# 中文 Agent Skills
 
 这个仓库集中存放可复用的中文 Agent Skill。
 
@@ -20,7 +20,7 @@
 
 - 单一路径 `.opencode/handover/`，单一真相源 `state.json`
 - 语义去重 `contentHash`、版本原子写、按 `frontier` 关键词过滤 `lessons`
-- Praxis 可选集成（有则用，无则跳过），`ship` 前自动提醒吸收
+- 输入源动态发现（路径来自 AGENTS.md 约定）；boot-packet/project_summary 只读投影不反写
 
 核心机制：Frontier（待办）+ Gate（阻塞）+ Evidence（证据），配合进展信号规范，支持跨 `worktree` 与多项目复用。
 
